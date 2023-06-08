@@ -4,7 +4,8 @@ import Product from "../components/Product";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 
 const ProductsPage = () => {
-  const { productsArr, onAdd } = useOutletContext();
+  const { user, productsArr, onAdd } = useOutletContext();
+  const email = user?.email || null
 
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -67,22 +68,14 @@ const ProductsPage = () => {
   const productElements = displayedProducts?.map((product) => (
     <div className="m-5" key={product.id}>
       <Product key={product.id} product={product} />
+      {/* {console.log(user.email, product, product.id)} */}
       <div>
-        <div className="  flex  items-center">
-          <div className="flex text-indigo-700">
-            <AiFillStar />
-            <AiFillStar />
-            <AiFillStar />
-            <AiFillStar />
-            <AiOutlineStar />
-          </div>
-          <p className="ml-2">(20)</p>
-        </div>
 
         <button
-          className="mt-3 px-5 py-2 border borderindigo-700 hover: bg-indigo-100 hover:bg-indigo-200    rounded-xl flex-grow  text-indigo-700 text-lg font-extrabold hover:scale-110 duration-500"
-          onClick={() => onAdd(product, 1)}
+          className="mt-3 px-5 py-2 w-full border borderindigo-700 hover: group-hover:scale-110 bg-indigo-100 hover:bg-indigo-200  disabled:opacity-20 disabled:cursor-not-allowed  rounded-xl flex-grow  text-indigo-700 text-lg font-extrabold hover:scale-110 duration-500"
+          onClick={async () => await onAdd( product, 1)}
           type="button"
+          disabled={!user}
         >
           Add to Cart
         </button>

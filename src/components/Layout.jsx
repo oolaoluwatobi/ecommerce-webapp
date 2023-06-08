@@ -6,31 +6,31 @@ import {
   signOut,
   onAuthStateChanged,
 } from "firebase/auth";
-import { setDoc, doc } from "firebase/firestore";
+import { setDoc, doc, updateDoc, arrayUnion } from "firebase/firestore";
 import { Toaster, toast } from 'react-hot-toast';
 import Header from './Header'
 import Footer from './Footer'
-import { auth, getProducts } from '../api/firebase'
+import { auth, db, getProducts } from '../api/firebase'
 
 
-export async function signUp(email, password) {
-  await createUserWithEmailAndPassword(auth, email, password)
-  sessionStorage.setItem('loggedIn', 'true')
-  await setDoc(doc(db, 'users', email), {
-    favoriteProducts: []
-  })
-}
+// export async function signUp(email, password) {
+//   await createUserWithEmailAndPassword(auth, email, password)
+//   sessionStorage.setItem('loggedIn', 'true')
+//   await setDoc(doc(db, 'users', email), {
+//     favoriteProducts: []
+//   })
+// }
 
-export async function logOut() {
-  await signOut(auth)
-  return sessionStorage.removeItem('loggedIn')
-}
+// export async function logOut() {
+//   await signOut(auth)
+//   return sessionStorage.removeItem('loggedIn')
+// }
 
-export async function logIn(email, password) {
-  await signInWithEmailAndPassword(auth, email, password)
-  sessionStorage.setItem('loggedIn', 'true')
-  return null
-}
+// export async function logIn(email, password) {
+//   await signInWithEmailAndPassword(auth, email, password)
+//   sessionStorage.setItem('loggedIn', 'true')
+//   return null
+// }
 
 export function loader() {
   return getProducts()
@@ -48,6 +48,39 @@ const Layout = () => {
 
   let foundProduct;
   let index;
+
+
+
+  
+async function onFavorite({ email, product: { id, name, type, imageUrl, price, desc, category, isFavorite }, quantity }) {
+  console.log(email, id, name, type, imageUrl, price, desc, category, isFavorite)
+  const  userId = doc(db, 'users', email)
+  if (email) {
+    updateDoc(userId, {
+      cartItems: arrayUnion({
+        id,
+        name,
+        type,
+        category,
+        imageUrl,
+        price,
+        desc,
+        isFavorite,
+        quantity
+      })
+    }).then(
+      toast.success('Succcessful'),
+    ).catch((error) => {
+      console.log(error)
+      return error
+    })
+  } else {
+    alert('Please log in to rent a van. #vanlife')
+    redirect('/login')
+  }
+}
+
+
 
   const onAdd = (product, quantity) => {
     const checkProductInCart = cartItems.find((item) => item.id === product.id);
@@ -125,6 +158,7 @@ const Layout = () => {
   }
 
   const contextObj = {
+    user,
     productsArr,
     showCart,
     setShowCart,
@@ -154,9 +188,6 @@ const Layout = () => {
     }
 
   })
-
-  useEffect(() => {
-  }, [])
   
   return (
     <div className=' flex flex-col items-center'>

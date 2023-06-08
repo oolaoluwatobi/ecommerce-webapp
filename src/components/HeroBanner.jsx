@@ -17,7 +17,7 @@ const HeroBanner = ({ heroBanner }) => {
           <h3 className="font-extrabold text-7xl text-indigo-800">
             {heroBanner.largeText1}
           </h3>
-          <h3 className="text-4xl font-bold mt-10 text-indigo-600 ">
+          <h3 className="text-4xl font-bold mt-10 text-indigo-600 z-50">
             {heroBanner.midText}
           </h3>
           <img

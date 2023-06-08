@@ -15,10 +15,10 @@ const FooterBanner = ({ footerBanner }) => {
             <p className="mt-6">{footerBanner.saleTime}</p>
           </div>
 
-          <div className=" leading-6 text-right">
+          <div className=" font-bold leading-6 text-right">
             <p className="text-lg">{footerBanner?.productName}</p>
             <h3 className="text-6xl mt-5 font-extrabold">{footerBanner?.midText}</h3>
-            <p className="text-lg mt-4">desc</p>
+            <p className="text-lg mt-4">{footerBanner.desc}</p>
             <Link to=''>
               <button className="bg-white text-rose-400 border-none rounded-lg mt-20 text-lg font-extrabold cursor-pointer px-5 py-3  hover:scale-110 duration-500">
                 {footerBanner?.buttonText}

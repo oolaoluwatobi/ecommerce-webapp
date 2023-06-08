@@ -20,9 +20,7 @@ const Home = () => {
 
   const productElements =  productsArr?.map((product) => (
     <div className="" key={product.id}>
-      {/* <Link to={product.id} key={product.id}> */}
         <Product key={product.id} product={product} />
-      {/* </Link> */}
     </div>
 ))
 

@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
-import { getFirestore, collection, doc, getDocs, getDoc, updateDoc, arrayUnion } from "firebase/firestore"
+import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { getFirestore, collection, doc, getDocs, getDoc, updateDoc, arrayUnion, setDoc } from "firebase/firestore"
 
 import { redirect } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
@@ -64,4 +64,39 @@ export async function getBanner(id) {
     ...bannerSnapshot.data(),
     id: bannerSnapshot.id
   }
+}
+
+
+
+export async function signUp(email, password) {
+  await createUserWithEmailAndPassword(auth, email, password)
+  sessionStorage.setItem('loggedIn', 'true')
+  await setDoc(doc(db, 'users', email), {
+    favoriteProducts: [],
+    cartItems: []
+  })
+}
+
+export async function logOut() {
+  await signOut(auth)
+  return sessionStorage.removeItem('loggedIn')
+}
+
+export async function logIn(email, password) {
+  await signInWithEmailAndPassword(auth, email, password)
+  sessionStorage.setItem('loggedIn', 'true')
+  return null
+}
+
+
+export async function requireAuth(request) {
+  const path = new URL(request.url).pathname
+  const isLoggedIn = sessionStorage.getItem("loggedIn")
+  // console.log(isLoggedIn, request, path, 'requireAuth')
+  
+  if(!isLoggedIn) {
+    throw redirect(`/login?message=You must log in first!&redirectTo=${path}`)
+  }
+  return null
+  // console.log(`${path}?user=${user}`)
 }

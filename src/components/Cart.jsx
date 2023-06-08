@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link, useOutletContext } from "react-router-dom";
 import {
   AiOutlineMinus,
@@ -7,17 +7,22 @@ import {
   AiOutlineShoppingCart,
 } from "react-icons/ai";
 import { TiDeleteOutline } from "react-icons/ti";
+import { db, requireAuth } from "../api/firebase";
+import { doc, onSnapshot } from "firebase/firestore";
 // import toast from 'react-hot-toast';
 
 // import { client } from '../lib/client';
 // import getStripe from '../lib/getStripe';
 
+
 const Cart = (props) => {
   // const Cart = ({ setShowCart, totalPrice, totalQuantities, cartItems,  toggleCartItemQuantity, onRemove  }) => {
   // const {totalQuantities }= props
-
+  // const [cartItems, setCartItems] = useState([])
+  
   const cartRef = useRef();
   const {
+    user,
     totalPrice,
     totalQuantities,
     cartItems,
@@ -25,6 +30,24 @@ const Cart = (props) => {
     onRemove,
     setShowCart,
   } = props.contextObj;
+  
+  const email = user?.email || null
+  console.log(cartItems, email)
+  
+  useEffect(() => {
+    onSnapshot(doc(db, 'users', `${email}`), (doc) => {
+      setCartItems(doc.data()?.cartItems) 
+    })
+
+    // const isLoggedIn = sessionStorage.getItem('loggedIn')
+    // console.log('isLoggedIn : ', isLoggedIn)
+
+    // async function vansArr() {
+    //   const arr = await getVans()
+    //   setAllVans(arr)
+    // }
+    // vansArr()
+  }, [user])
 
 
   // console.log(cartItems, onRemove);
@@ -47,6 +70,10 @@ const Cart = (props) => {
   //   toast.loading('Redirecting...');
 
   //   stripe.redirectToCheckout({ sessionId: data.id });
+  // }
+
+  // if(!user) {
+  //   return alert("Please login to check your cart")
   // }
 
   return (

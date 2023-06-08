@@ -21,7 +21,7 @@ const ProductPage = () => {
 
   const product = productsArr?.find((item) => item.id === id);
   const { imageUrl, name, desc, price } = product;
-  console.log(id, imageUrl, name, desc, price);
+  // console.log(id, imageUrl, name, desc, price);
 
   const productElements = productsArr?.map((product) => (
     <div className="" key={product.id}>
