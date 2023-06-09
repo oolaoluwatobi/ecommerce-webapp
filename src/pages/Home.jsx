@@ -33,7 +33,7 @@ const Home = () => {
             Best Selling Products
           </h2>
           <p className="font-extralight text-lg mt-2">
-            Speakers of many variations{" "}
+            Gadgets of many variations{" "}
           </p>
         </div>
 
