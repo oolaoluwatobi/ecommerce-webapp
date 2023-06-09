@@ -6,7 +6,7 @@ const FooterBanner = ({ footerBanner }) => {
   
   return (
     <div>
-      <div className="px-16 lg:px-24  py-10 bg-red-500 rounded-2xl relative h-96 leading-4 text-white w-full mt-28">
+      <div className="px-10 lg:px-16  py-10 bg-red-500 rounded-2xl relative h-96 leading-4 text-white w-full mt-28">
         <div className="banner-desc flex justify-between">
           <div className="">
             <p className="my-4 ">{footerBanner?.discount}</p>
@@ -19,7 +19,7 @@ const FooterBanner = ({ footerBanner }) => {
             <p className="text-lg">{footerBanner?.productName}</p>
             <h3 className="text-6xl mt-5 font-extrabold">{footerBanner?.midText}</h3>
             <p className="text-lg mt-4">{footerBanner.desc}</p>
-            <Link to=''>
+            <Link to={`/${footerBanner?.productId}`}>
               <button className="bg-white text-rose-400 border-none rounded-lg mt-20 text-lg font-extrabold cursor-pointer px-5 py-3  hover:scale-110 duration-500">
                 {footerBanner?.buttonText}
               </button>

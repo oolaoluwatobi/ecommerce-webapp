@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useReducer, useState } from "react";
 import {
   AiOutlineMinus,
   AiOutlinePlus,
@@ -6,7 +6,7 @@ import {
   AiOutlineStar,
 } from "react-icons/ai";
 
-import { Link, useOutletContext, useParams } from "react-router-dom";
+import { Link, useNavigate, useOutletContext, useParams } from "react-router-dom";
 import Product from "../components/Product";
 
 // import { client } from '../../lib/client';
@@ -15,9 +15,9 @@ import Product from "../components/Product";
 
 const ProductPage = () => {
   const { id } = useParams();
-  const { productsArr, decQty, incQty, qty, onAdd, setShowCart } =
-    useOutletContext();
+  const { user, productsArr, decQty, incQty, qty, onAdd, setShowCart } = useOutletContext();
   const [index, setIndex] = useState(0);
+  const navigate = useNavigate()
 
   const product = productsArr?.find((item) => item.id === id);
   const { imageUrl, name, desc, price } = product;
@@ -120,6 +120,7 @@ const ProductPage = () => {
               <button
                 className="px-5 py-2 border borderindigo-700 hover: bg-indigo-100 hover:bg-indigo-200    rounded-xl flex-grow  text-indigo-700 text-lg font-extrabold hover:scale-110 duration-500"
                 onClick={() => onAdd(product, qty)}
+                  
                 type="button"
               >
                 Add to Cart

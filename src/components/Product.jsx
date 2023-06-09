@@ -7,45 +7,13 @@ const Product = ({ product }) => {
   const { imageUrl, name, id, price, isFavorite, quantity } = product
   const {user} = useOutletContext()
   const email = user?.email
-  console.log(email, id, product)
+  // console.log(email, id, product)
 
   // const handleLike = (id) => {
   //   e.stopPropagation()
 
   // }
 
-
-    
-async function handleLike( email, product ) {
-  const { imageUrl, name, id, price, desc, isFavorite, quantity } = product
-  
-
-  console.log(email, id, name, type, imageUrl, price, desc, category, isFavorite)
-  const  userId = doc(db, 'users', email)
-  if (email) {
-    updateDoc(userId, {
-      favoriteProducts: arrayUnion({
-        id,
-        name,
-        type,
-        category,
-        imageUrl,
-        price,
-        desc,
-        isFavorite: !isFavorite,
-        quantity
-      })
-    }).then(
-      toast.success('Succcessful'),
-    ).catch((error) => {
-      console.log(error)
-      return error
-    })
-  } else {
-    alert('Please log in to rent a van. #vanlife')
-    redirect('/login')
-  }
-}
   
 
   return (
@@ -60,9 +28,6 @@ async function handleLike( email, product ) {
               className=""
               alt="product"
             />
-            <button onClick={async (e) => ( await handleLike(email, product))} className="text-indigo-400 p-2 rounded-full bg-neutral-100 hover:scale-110 duration-500 absolute top-4 right-4">
-              {isFavorite ? <AiFillHeart className="" size={20} /> : <AiOutlineHeart className="" size={20} />}
-            </button>
           </div>
         </div>
         <p className="font-medium mt-1">{name}</p>

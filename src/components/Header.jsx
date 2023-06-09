@@ -25,7 +25,7 @@ const Header = (props) => {
   return (
     <div className="w-full  flex justify-center">
       <div className="flex max-w-7xl w-full items-center justify-between ">
-        <div className="flex  justify-between w-full px-10 my-4 relative  ">
+        <div className="flex  justify-between w-full px-10 lg:px-16  my-4 relative  ">
           <p className="text-indigo-800 text-xl font-bold font-mono">
             <Link to="/">viBes gadgets</Link>
           </p>
@@ -40,8 +40,10 @@ const Header = (props) => {
               // className={({ isActive }) =>
               //   isActive ? activeStyles() : inActiveStyles()
               // }
-            >
-              <AiOutlineProfile className="mt-1 justify-end " size={25} />
+            ><div className="flex text-indigo-800 text-xl font-bold font-mono ">
+              <AiOutlineProfile className="mr-2 justify-end " size={25} />
+              <p>Dashboard</p>
+            </div>
             </NavLink>
           )}
 
@@ -52,7 +54,10 @@ const Header = (props) => {
               //   isActive ? activeStyles() : inActiveStyles()
               // }
             >
-              <AiOutlineUser className="mt-1 justify-end " size={25} />
+              <div className="flex text-indigo-800 text-xl font-bold font-mono">
+                <AiOutlineUser className="mr-2 justify-end " size={25} />
+                <p>Account</p>
+              </div>
               {/* <BsPersonCircle className="mt-1 justify-end " size={20} /> */}
             </NavLink>
           ) : (
@@ -64,8 +69,10 @@ const Header = (props) => {
                 navigate("login");
               }}
             >
-              <BsPersonX className="mt-1 justify-end " size={25} />
-              {/* <AiOutlineLogout className="mt-1 justify-end " size={20} /> */}
+              <div className="flex text-indigo-800 text-xl font-bold font-mono">
+                <BsPersonX className="mr-2 justify-end " size={25} />
+                <p>Log out</p>
+              </div>
             </button>
           )}
 

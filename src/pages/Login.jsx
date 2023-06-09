@@ -33,13 +33,13 @@ const Login = () => {
   const error = useActionData()
 
   const navigation = useNavigation()
-  // console.log(navigation)
-
+  
   const message = useLoaderData()
+  console.log(message)
 
   return (
-    <div className="hfit fle hfull   bg-[#ffddb2 pb-10 rounded-xl ">
-      <div className="p-5 pt-20 mx-auto min-w-xl mt-24">
+    <div className=" h-ful w-[1152px] mx-auto bg[#ffddb2] pb-10 rounded-xl ">
+      <div className="p-5 pt-20 max-w-3xl mx-auto mt-24">
         <h1 className="text-center font-bold text-3xl">
           Sign in to your account
         </h1>

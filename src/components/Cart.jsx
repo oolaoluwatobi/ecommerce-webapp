@@ -34,20 +34,20 @@ const Cart = (props) => {
   const email = user?.email || null
   console.log(cartItems, email)
   
-  useEffect(() => {
-    onSnapshot(doc(db, 'users', `${email}`), (doc) => {
-      setCartItems(doc.data()?.cartItems) 
-    })
+  // useEffect(() => {
+  //   onSnapshot(doc(db, 'users', `${email}`), (doc) => {
+  //     setCartItems(doc.data()?.cartItems) 
+  //   })
 
-    // const isLoggedIn = sessionStorage.getItem('loggedIn')
-    // console.log('isLoggedIn : ', isLoggedIn)
+  //   // const isLoggedIn = sessionStorage.getItem('loggedIn')
+  //   // console.log('isLoggedIn : ', isLoggedIn)
 
-    // async function vansArr() {
-    //   const arr = await getVans()
-    //   setAllVans(arr)
-    // }
-    // vansArr()
-  }, [user])
+  //   // async function vansArr() {
+  //   //   const arr = await getVans()
+  //   //   setAllVans(arr)
+  //   // }
+  //   // vansArr()
+  // }, [user])
 
 
   // console.log(cartItems, onRemove);
@@ -181,6 +181,7 @@ const Cart = (props) => {
             <div className="btn-container w-[full] mx-10 mt-5 flex justify-center items-center ">
               <button
                 type="button"
+                disabled
                 // onClick={handleCheckOut}
                 className="btn w-full max-w-[450px] px-2.5 py-3 my-5 mx-auto rounded-2xl border-none text-xl uppercase bg-red-500 font-bold text-white cursor-pointer hover:scale-110 duration-500"
               >

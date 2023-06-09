@@ -22,10 +22,10 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />} loader={layoutLoader} >
       <Route index element={<Home />} loader={homeLoader} />
-      <Route path="/:id" element={<ProductPage />} />
+      <Route path=":id" element={<ProductPage />} />
       <Route path="products" element={<ProductsPage />} />
-      <Route path="login" element={<Login />} loadder={loginLoader} action={loginAction} />
-      <Route path="signup" element={<Signup />} loadder={signUpLoader} action={signUpAction} />
+      <Route path="login" element={<Login />} loader={loginLoader} action={loginAction} />
+      <Route path="signup" element={<Signup />} loader={signUpLoader} action={signUpAction} />
 
       <Route path="dashboard" element={<HostLayout />}>
         <Route

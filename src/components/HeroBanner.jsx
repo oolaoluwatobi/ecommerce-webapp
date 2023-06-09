@@ -4,11 +4,11 @@ import { getBanner } from "../api/firebase";
 
 
 const HeroBanner = ({ heroBanner }) => {
-  // console.log(heroBanner)
+  console.log(heroBanner)
   
   return (
     <div className="">
-      <div className="bg-indigo-200 rounded-2xl relative h-[500px] mx-auto px-16 lg:px-24 py-10 leading-3">
+      <div className="bg-indigo-200 rounded-2xl relative h-[500px] mx-auto px-10 lg:px-16 py-10 leading-3">
         <div>
           {/* <p className='text-xl text-indigo-600'>{heroBanner.productName}</p> */}
           <h3 className="text-8xl font-bold text-indigo-800 mt-5 uppercase">
@@ -29,14 +29,15 @@ const HeroBanner = ({ heroBanner }) => {
           />
         </div>
 
-        <Link href="">
-          <button className="bg-indigo-800 text-white px-5 py-3 rounded-lg border-none mt-10 text-lg font-medium cursor-pointer z-50  hover:scale-110 duration-500">
+        <Link to={`/${heroBanner?.productId}`}>
+          <button
+           className="bg-indigo-800 text-white px-5 py-3 rounded-lg border-none mt-10 text-lg font-medium cursor-pointer z-50  hover:scale-110 duration-500">
             {heroBanner.buttonText}
           </button>
         </Link>
 
         <div className="absolute right-[10%] bottom-[5%] w-[300px leading-5 flex flex-col text-right">
-          <h5 className="text-indigo-800 font-bold ">Description</h5>
+          {/* <h5 className="text-indigo-800 font-bold ">Description</h5> */}
           <p className="mb-3 text-base font-bold">{heroBanner.desc}</p>
         </div>
       </div>

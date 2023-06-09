@@ -7,9 +7,9 @@ const HostLayout = () => {
   return (
     <div className="w-full flex flex-col bg-teal500  items-center">
       <div className=" ">
-        <div className="flex w-full "></div>
-        <Outlet context={contextObj}  />
-        Dashboard
+        <div className="flex w-full ">
+          <Outlet context={contextObj}  />
+        </div>
       </div>
     </div>
   );

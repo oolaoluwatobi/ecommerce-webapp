@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Outlet, useLoaderData } from 'react-router-dom'
+import { Outlet, redirect, useLoaderData, useNavigate } from 'react-router-dom'
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -45,44 +45,17 @@ const Layout = () => {
   const [qty, setQty] = useState(1);
   const [like, setLike] = useState(false)
   const [user, setUser] = useState({})
+  const navigate = useNavigate()
 
   let foundProduct;
   let index;
 
-
-
-  
-async function onFavorite({ email, product: { id, name, type, imageUrl, price, desc, category, isFavorite }, quantity }) {
-  console.log(email, id, name, type, imageUrl, price, desc, category, isFavorite)
-  const  userId = doc(db, 'users', email)
-  if (email) {
-    updateDoc(userId, {
-      cartItems: arrayUnion({
-        id,
-        name,
-        type,
-        category,
-        imageUrl,
-        price,
-        desc,
-        isFavorite,
-        quantity
-      })
-    }).then(
-      toast.success('Succcessful'),
-    ).catch((error) => {
-      console.log(error)
-      return error
-    })
-  } else {
-    alert('Please log in to rent a van. #vanlife')
-    redirect('/login')
-  }
-}
-
-
-
   const onAdd = (product, quantity) => {
+    if(!user) {
+      navigate('/login?message=You must login first')
+      return null
+    }
+    
     const checkProductInCart = cartItems.find((item) => item.id === product.id);
     
     setTotalPrice((prevTotalPrice) => prevTotalPrice + product.price * quantity);
@@ -199,7 +172,7 @@ async function onFavorite({ email, product: { id, name, type, imageUrl, price, d
 
         
         <main className='flex grow bg-purple300'>
-          <div className=''>
+          <div className='mx-auto '>
             <Outlet 
             context={contextObj}
           />

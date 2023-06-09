@@ -37,10 +37,11 @@ const SignUp = () => {
   const message = useLoaderData()
 
   return (
-    <div className="bg-indigo-200 mx-auto max-w-xl rounded-xl ">
+    // <div className=" h-ful w-[1152px] flex items-center justify-center bg-[#ffddb2] pb-10 rounded-xl ">
+    // <div className="p-5 pt-20  mx-auto mt-24">
 
-      <div className="px-16 py-20 mx-auto mt-24 ">
-
+    <div className="bg-indigo200 mx-auto w-[1152px]  ">
+      <div className="bg-indigo-200 px-16 py-20 mx-auto mt-24 max-w-3xl rounded-xl ">
         <h1 className="text-center font-bold text-3xl">
           Sign up
         </h1>
@@ -72,7 +73,7 @@ const SignUp = () => {
           </button>
         </Form>
         <h5 className="font-medium text-base mt-10 text-center">
-          Create an account to rent a van. 
+          Create an account to purchase a product. 
         </h5>
       </div>
 

@@ -70,23 +70,24 @@ const ProductsPage = () => {
       <Product key={product.id} product={product} />
       {/* {console.log(user.email, product, product.id)} */}
       <div>
-
+{/* 
         <button
-          className="mt-3 px-5 py-2 w-full border borderindigo-700 hover: group-hover:scale-110 bg-indigo-100 hover:bg-indigo-200  disabled:opacity-20 disabled:cursor-not-allowed  rounded-xl flex-grow  text-indigo-700 text-lg font-extrabold hover:scale-110 duration-500"
+          className="mt-3 px-5 py-2 w-full border borderindigo-700 hover: group-hover:scale-110 bg-indigo-100 hover:bg-indigo-200 rounded-xl flex-grow  text-indigo-700 text-lg font-extrabold hover:scale-110 duration-500"
           onClick={async () => await onAdd( product, 1)}
           type="button"
-          disabled={!user}
         >
           Add to Cart
-        </button>
+        </button> */}
+
       </div>
+      
     </div>
   ));
 
   return (
     <div>
       <div className="mt-3">
-        <div className="mt-6 mb-8 flex">
+        <div className="mt-6 mb-8 mx-20 flex">
           {filterElements}
           {typeFilter && (
             <button
